@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/admin', function() {
+    return view('admin');
+});
+Route::get('/feeditems', function(){
+    return view('feeditems');
 });
