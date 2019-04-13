@@ -15,9 +15,12 @@
 //     return view('welcome');
 // });
 
-Route::get('/admin', function() {
-    return view('admin');
-});
+
 Route::get('/feeditems', function(){
     return view('feeditems');
 });
+Route::resource('feeds','FeedController');
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admindashboard', 'AdminDashboardController@index');

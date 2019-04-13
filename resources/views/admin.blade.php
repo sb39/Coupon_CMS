@@ -6,7 +6,7 @@
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" href="#">
+          <a class="nav-link active" href="/admindashboard">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             Dashboard <span class="sr-only">(current)</span>
           </a>
@@ -89,18 +89,47 @@
                             <div class="panel-title">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+                                        <h5><span class="glyphicon glyphicon-shopping-cart"></span>Your Listings</h5>
                                     </div>
-                                    <div class="col-xs-6">
-                                        <button type="button" class="btn btn-primary btn-sm btn-block">
-                                            <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
-                                        </button>
-                                    </div>
+                                        {{-- <div class="col-xs-6">
+                                            <button type="button" class="btn btn-primary btn-sm btn-block">
+                                                <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+                                            </button>
+                                        </div> --}}
                                 </div>
                             </div>
                         </div>
                         <div class="panel-body">
-                            
+                                @if(count($feeds)>0)
+                                
+                                @foreach($feeds as $feed)
+                                    <div class="card card-body bg-light">
+                                        <div class="row col-md-12" style="margin-bottom:10px;">
+                                            <div class="col-md-6 col-sm-6 mt-auto mb-auto" >
+                                                    <h3><a href="feeds/{{$feed->id}}">{{$feed->title}}</a></h3>
+                                                    <small>{{$feed->created_at}}</small>
+                                            </div>   
+                                            <div class="col-md-1 col-sm-1 mt-auto mb-auto" >       
+                                            <a class="btn btn-info" href="feeds/{{$feed->id}}/edit">Edit</a>
+                                            </div>
+                                            <div class="col-md-1 col-sm-1 mt-auto ml-auto mb-auto" >   
+                                                    {!!Form::open(['action' => ['FeedController@destroy', $feed->id], 'method' => 'POST', 'class' => 'float-right'])!!}
+                                                        {{Form::hidden('_method','DELETE')}}
+                                                    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                                                {!!Form::close()!!}
+                                            </div>
+                                                       
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <div class="text-center">
+                                {{$feeds->links()}}
+                                </div>
+                                @else
+                                <h3>No data found!</h3>
+                            @endif
                         </div>
                     </div>
                 </div>
