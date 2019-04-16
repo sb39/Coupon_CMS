@@ -11,9 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 Route::get('/feeditems', function(){
@@ -24,3 +24,10 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admindashboard', 'AdminDashboardController@index');
+
+//customer
+Route::prefix('customer')->group(function(){
+    Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
+    Route::post('/login', 'Auth\CustomerLoginController@login')->name('customer.login.submit');
+    Route::get('/', 'CustomerController@index')->name('customer.dashboard');
+});

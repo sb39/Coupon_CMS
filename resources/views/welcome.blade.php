@@ -45,7 +45,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 24px;
             }
 
             .links > a {
@@ -62,26 +62,19 @@
                 margin-bottom: 30px;
             }
         </style>
+           <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+       
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class=" m-b-md">
+                   <div class="row col-md-12 ">
+                       <a class="btn btn-success ml-auto mr-1" href="/login">Admin Login</a>
+                       <a class="btn btn-primary mr-auto" href="/customer/login">Customer Login</a>
+                   </div>
                 </div>
 
                 <div class="links">
