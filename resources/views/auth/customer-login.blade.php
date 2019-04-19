@@ -10,8 +10,21 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('customer.login.submit') }}">
                         @csrf
-
-                        <div class="form-group row">
+                        @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                          <p>
+                            {{ $message }}
+                          </p>
+                        </div>
+                      @endif
+                      @if ($message = Session::get('warning'))
+                        <div class="alert alert-warning">
+                          <p>
+                            {{ $message }}
+                          </p>
+                        </div>
+                      @endif
+                        <div class="form-group row{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
@@ -25,7 +38,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

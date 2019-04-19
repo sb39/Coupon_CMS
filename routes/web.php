@@ -31,3 +31,5 @@ Route::prefix('customer')->group(function(){
     Route::post('/login', 'Auth\CustomerLoginController@login')->name('customer.login.submit');
     Route::get('/', 'CustomerController@index')->name('customer.dashboard');
 });
+// token based registration
+Route::get('/customer/activation/{token}', 'Auth\RegisterController@customerActivation');

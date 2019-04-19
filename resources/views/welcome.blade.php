@@ -69,15 +69,20 @@
         <div class="flex-center position-ref full-height">
        
 
-            <div class="content">
+            <div class="content col-md-10 container">
                 <div class=" m-b-md">
+                        <div class="row col-md-12 ">
+                                <h2 class="ml-auto mr-auto">{{ config('app.name', 'coupon_CMS') }}</h2>
+                        </div>
+                        <hr>
                    <div class="row col-md-12 ">
+                       
                        <a class="btn btn-success ml-auto mr-1" href="/login">Admin Login</a>
                        <a class="btn btn-primary mr-auto" href="/customer/login">Customer Login</a>
                    </div>
                 </div>
 
-                <div class="links">
+                {{-- <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
@@ -85,7 +90,7 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </body>
