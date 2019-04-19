@@ -30,6 +30,9 @@ Route::prefix('customer')->group(function(){
     Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
     Route::post('/login', 'Auth\CustomerLoginController@login')->name('customer.login.submit');
     Route::get('/', 'CustomerController@index')->name('customer.dashboard');
+
+    Route::get('/register', 'Auth\CustomerRegisterController@showRegistrationForm')->name('customer.register');
+    Route::post('/register', 'Auth\CustomerRegisterController@register')->name('customer.register.submit');
 });
 // token based registration
-Route::get('/customer/activation/{token}', 'Auth\RegisterController@customerActivation');
+Route::get('/customer/activation/{token}', 'Auth\CustomerRegisterController@customerActivation');

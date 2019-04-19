@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+// use App\User;
+// use Validator;
+// use App\Http\Controllers\Controller;
+// use Illuminate\Foundation\Auth\RegistersUsers;
+// use Illuminate\Http\Request;
+use DB;
+use Mail;
+
 class CustomerRegisterController extends Controller
 {
     /*
@@ -38,9 +46,14 @@ class CustomerRegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:customer');
     }
 
+
+      public function showRegistrationForm()
+    {
+        return view('auth.customer-register');
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -51,7 +64,7 @@ class CustomerRegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -67,7 +80,7 @@ class CustomerRegisterController extends Controller
         return Customer::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => becrypt($data['password']),
+            'password' => bcrypt($data['password']),
         ]);
     }
     public function register(Request $request) {
