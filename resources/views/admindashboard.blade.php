@@ -16,21 +16,31 @@
                     <table class="table table-striped">
                         <tr>
                             <th>Title</th>
-                            <th></th>
-                            <th></th>
+                            <th>Quantity</th>
+                            <th>Cost</th>
+                        </tr>
+                        {!! Form::open(['action' => 'OrdersController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                        <tr>
+                                <div class="form-group">
+                                        {{Form::label('customer_id', 'Customer ID:')}}
+                                        {{Form::text('customer_id','',['class' => 'form-control', 'placeholder' => 'enter Customer ID here'])}}
+                                </div>
                         </tr>
                         @foreach($feeds as $feed)
                         <tr>
-                            <th>{{$feed->title}}</th>
-                            <th><a class="btn btn-warning" href="/feeds/{{$feed->id}}/edit">Edit</a></th>
+                            <th>{{Form::text('item_name',$feed->title,array('class' => 'form-control readonly', 'readonly'))}}</th>
                             <th>
-                                    {!!Form::open(['action' => ['FeedController@destroy', $feed->id], 'method' => 'POST', 'class' => 'float-right'])!!}
-                                    {{Form::hidden('_method','DELETE')}}
-                                    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                                    {!!Form::close()!!}
+                                {{Form::text('quantity','',['class' => 'form-control', 'placeholder' => 'enter quantity'])}}
                             </th>
+                            <th>{{Form::text('item_price',$feed->price,array('class' => 'form-control readonly', 'readonly'))}}</th>
+
                         </tr>
+                        
                         @endforeach
+                        <tr>
+                                <th>{{Form::submit('Order', ['class' => 'btn btn-warning'])}}</th>
+                        </tr>
+                        {!! Form::close() !!}
                     </table>
                     @else
                         <p>No data</p>
