@@ -20,11 +20,12 @@ Route::get('/feeditems', function(){
     return view('feeditems');
 });
 Route::resource('feeds','FeedController');
+Route::resource('orders','OrdersController');
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admindashboard', 'AdminDashboardController@index');
-
+Route::get('/adminorders', 'OrdersController@index');
 //customer
 Route::prefix('customer')->group(function(){
     Route::get('/login', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
@@ -36,3 +37,5 @@ Route::prefix('customer')->group(function(){
 });
 // token based registration
 Route::get('/customer/activation/{token}', 'Auth\CustomerRegisterController@customerActivation');
+//localization route
+Route::get('lang/{locale}', 'LocalizationController@index');

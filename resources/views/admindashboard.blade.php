@@ -28,11 +28,11 @@
                         </tr>
                         @foreach($feeds as $feed)
                         <tr>
-                            <th>{{Form::text('item_name',$feed->title,array('class' => 'form-control readonly', 'readonly'))}}</th>
+                            <th>{{Form::text('item_name',$feed->title,array('class' => 'form-control ','readonly'))}}</th>
                             <th>
                                 {{Form::text('quantity','',['class' => 'form-control', 'placeholder' => 'enter quantity'])}}
                             </th>
-                            <th>{{Form::text('item_price',$feed->price,array('class' => 'form-control readonly', 'readonly'))}}</th>
+                            <th>{{Form::text('item_price',$feed->price,array('class' => 'form-control ','readonly'))}}</th>
 
                         </tr>
                         

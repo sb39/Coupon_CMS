@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use DB;
 
 class OrdersController extends Controller
 {
@@ -22,6 +23,7 @@ class OrdersController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
     public function create()
     {
@@ -43,13 +45,34 @@ class OrdersController extends Controller
             'item_price' => 'required'
         ]);
 
-        $order = new Order;
-        $order->customer_id = $request->input('customer_id');
-        $order->item_name  = item_name;
-        $order->quantity = $request->input('quantity');
-        $order->item_price = item_price;
-        $order->save();
+        // $order = new Order;
+        // $order->customer_id = $request->input('customer_id');
+        // $order->item_name  = item_name;
+        // $order->quantity = $request->input('quantity');
+        // $order->item_price = item_price;
+        // $order->save();
+        
+        $order = new Order([
+            'customer_id'     => $request->input('customer_id'),
+            // 'user_id'   => Auth::user()->id,
+            'item_name' => $request->input('item_name'),
+            // 'category_id'  => $request->input('category'),
+            'quantity'  => $request->input('quantity'),
+            'item_price'   => $request->input('item_price')
+        ]);
+        
+        // $cust = $request->input('customer_id'),
+        // 'item_name' => $request->input('item_name'),
+        //     // 'category_id'  => $request->input('category'),
+        //     'quantity'  => $request->input('quantity'),
+        //     'item_price'   => $request->input('item_price')
+        // $order=array('customer_id'=>$cust,'');
+        // $order->save();
+        // return redirect()->back()->with("kisdbjab");
+        // return 123;
+        DB::table('orders')->insert($order);
         return 123;
+        
     }
 
     /**

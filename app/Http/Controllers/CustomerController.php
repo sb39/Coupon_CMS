@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Customer;
 
 class CustomerController extends Controller
 {
@@ -24,6 +24,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customer');
+        // return view('customer');
+        $customer_id = auth()->user()->id;
+        $customer = Customer::find($customer_id);
+        return view('customer')->with('customer_orders', $customer->orders);
+        // $customer_details = Customer
     }
 }

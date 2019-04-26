@@ -14,14 +14,27 @@
                     {{ config('app.name', 'newapp') }}
                 </a>
             </ul>
-
+            <ul class="navbar-nav ml-auto mr-auto"><p class="mt-auto mb-auto">Translate to:</p>
+                <li class="nav-item">
+                    <a href="lang/bn" class="nav-link">Bengali</a>
+                </li>
+                <li class="nav-item">
+                    <a href="lang/hn" class="nav-link">Hindi</a>
+                </li>
+                <li class="nav-item">
+                    <a href="lang/cn" class="nav-link">Chinese</a>
+                </li>
+                <li class="nav-item">
+                    <a href="lang/rs" class="nav-link">Russian</a>
+                </li>
+            </ul>
             
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
@@ -37,7 +50,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/feeds/">Admin Dashboard</a>
                             <a class="dropdown-item" href="/admindashboard">At a Glance</a>  
-                          <a class="dropdown-item" href="/feeds/create">Create Post</a>
+                          <a class="dropdown-item" href="/feeds/create">Create Feed</a>
                           
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
